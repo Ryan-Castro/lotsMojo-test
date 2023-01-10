@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Header from './components/Header'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 const Content = styled.div`
     width: 100vw;
@@ -41,6 +41,7 @@ interface LotInterface {
   thumbnail:  string,
   price:      number,
   sizeInFeet: number,
+  address: string
 }
 
 function Info() {
@@ -70,7 +71,10 @@ function Info() {
                     <h1>{lots?.name}</h1>
                     <h2>{lots?.price}</h2>
                     <h2>{lots?.sizeInFeet}</h2>
-                    <input type="button" value="Comprar" />
+                    <h2>{lots?.address}</h2>
+                    <Link to={`/acquisition/${lots?.name.replace(".", "")}`}>
+                        <input type="button" value="Comprar" />
+                    </Link>
                 </div>
             </div>
         </div>

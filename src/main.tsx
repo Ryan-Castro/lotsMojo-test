@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './Home'
 import Info from './Info'
+import Acquisition from './Acquisition';
 import {createGlobalStyle} from 'styled-components'
 
 const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "infos/:id",
     element: <Info />,
+  },
+  {
+    path: "acquisition/:id",
+    element: <Acquisition />,
   },
 ]);
 
