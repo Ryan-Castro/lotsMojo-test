@@ -9,6 +9,8 @@ const CardDiv = styled.div`
     overflow: hidden;
     margin-bottom: 100px;
     box-shadow: .5px .5px 3px #00000085;
+    color: black;
+    background-color: white;
     div{
         padding: 20px;
     }

@@ -27,6 +27,12 @@ const GlobalStyle = createGlobalStyle`
     padding: 0px;
     box-sizing: border-box;
   }
+  a{
+    text-decoration: none;
+  }
+  body{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVW60DZm5zjUF0KehcFHuJlkHFkwdyxuQCkGd9KEituyfm6ovCnSF0O4IRzNqTwr5OVWo&usqp=CAU");
+  }
 `
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

@@ -20,7 +20,7 @@ const HeaderDiv = styled.div`
     li{
         margin-right: 40px;
         font-size: 20px;
-        text-shadow: 0px 0px 2px black;
+        text-shadow: 2px 2px 1px black;
         color: white;
     }
 `

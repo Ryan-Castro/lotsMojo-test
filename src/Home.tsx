@@ -4,16 +4,30 @@ import Card from './components/Card'
 import Header from './components/Header'
 
 const Content = styled.div`
+    min-height: 100vh;
+    background-color: #ffffff99;
     
   #lotsList{
+    height: 100%;
     padding-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
   }
+
+  #configs{
+    background-color: aliceblue;
+    height: 80px;
+    padding: 30px;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 1px 2px black;
+  }
+  select{
+    float: right;
+  }
 `
 
-interface LotInterface {
+interface PropertyInterface {
   name:       string,
   thumbnail:  string,
   price:      number,
@@ -22,66 +36,104 @@ interface LotInterface {
 }
 
 function Home() {
-  const [lots, setLots] = useState<Array<LotInterface>>([])
-  useEffect(()=>{ 
-    fetch("https://lotsmojotest.herokuapp.com/properties/list").then(respOnServer=>{
-      if(respOnServer.ok){
-        return respOnServer.json()
-      }
-    }).then((respOnJson:{data:Array<LotInterface>})=>{
-        respOnJson.data.sort(function(a,b){
-            if(a.price > b.price) return 1; 
-            if(a.price < b.price) return -1; 
-            return 0
-        })
-        setLots(respOnJson.data)
-    })}, [])
+    const [properties, setProperty] = useState<Array<PropertyInterface>>([])
+    const [order, setOrder] = useState<string>("ascendingPrice")
+    const [priceOprion, setPriceOprion] = useState<number>(0)
+    const [sizeOprion, setSizeOprion] = useState<number>(0)
+    useEffect(()=>{ 
+        update(priceOprion, sizeOprion)
+    }, [])
 
-    function ascendingOrder(type:string){
-        let handleArrey = [...lots]
-        handleArrey.sort(function(a,b){
+    async function update(priceinput:number, sizeInput:number){
+        return await fetch("https://lotsmojotest.herokuapp.com/properties/list").then(respOnServer=>{
+            if(respOnServer.ok){
+                return respOnServer.json()
+            }
+        }).then((respOnJson:{data:Array<PropertyInterface>})=>{
+            sortProperties(respOnJson.data, order, priceinput, sizeInput)
+        })
+    }
+
+    function ascendingOrder(type:string, propertiesInput:Array<PropertyInterface>){
+        let handleProperties = [...propertiesInput]
+        handleProperties.sort(function(a,b){
             if(a[type] > b[type]) return 1; 
             if(a[type] < b[type]) return -1; 
             return 0
         })
-        setLots(handleArrey)
-
+        setProperty(handleProperties)
     }
-    function descendingOrder(type:string){
-        let handleArrey = [...lots]
-        handleArrey.sort(function(a,b){
+
+    function descendingOrder(type:string, propertiesInput:Array<PropertyInterface>){
+        let handleProperties = [...propertiesInput]
+        handleProperties.sort(function(a,b){
             if(a[type] < b[type]) return 1; 
             if(a[type] > b[type]) return -1; 
             return 0
         })
-        setLots(()=>handleArrey)
+        setProperty(handleProperties)
     }
 
-    function sortProperties(event:React.ChangeEvent<HTMLSelectElement>){
+    function updateOrder(event:React.ChangeEvent<HTMLSelectElement>){
         let element = event.target
-        switch (element.options[element.selectedIndex].value) {
-            case "ascendingPrice":ascendingOrder("price"); break;
-            case "descendingPrice":descendingOrder("price"); break;
-            case "ascendingSizeInFeet":ascendingOrder("sizeInFeet"); break;
-            case "descendingSizeInFeet":descendingOrder("sizeInFeet"); break;
-            default:
-                break;
-        }
+        setOrder(element.options[element.selectedIndex].value)
+        sortProperties(properties, element.options[element.selectedIndex].value, priceOprion, sizeOprion)
+    }
 
+    function updatePrice(event:React.ChangeEvent<HTMLSelectElement>){
+        let element = event.target
+        setPriceOprion(Number(element.options[element.selectedIndex].value))
+        update(Number(element.options[element.selectedIndex].value), sizeOprion)
+    }
+    
+    function updateSize(event:React.ChangeEvent<HTMLSelectElement>){
+        let element = event.target
+        setSizeOprion(Number(element.options[element.selectedIndex].value))
+        update(priceOprion, Number(element.options[element.selectedIndex].value))
+    }
+
+    async function sortProperties(propertiesInput:Array<PropertyInterface>, orderInput:string, priceInput:number, sizeRef:number){
+        let handleProperty = propertiesInput
+        if(priceInput>0){
+            handleProperty =  handleProperty.filter(property=> property.price < priceInput)
+        }
+        if(sizeRef>0){
+            handleProperty =  handleProperty.filter(property=> property.sizeInFeet < sizeRef)
+        }
+        switch (orderInput) {
+            case "ascendingPrice":ascendingOrder("price", handleProperty); break;
+            case "descendingPrice":descendingOrder("price", handleProperty); break;
+            case "ascendingSizeInFeet":ascendingOrder("sizeInFeet", handleProperty); break;
+            case "descendingSizeInFeet":descendingOrder("sizeInFeet", handleProperty); break;
+            default:;break;
+        }
+        
     }
 
   return (
     
     <Content>
         <Header></Header>
-        <select onChange={(e:React.ChangeEvent<HTMLSelectElement>)=>{sortProperties(e)}}>
-                <option value="ascendingPrice">Menor preço</option>
-                <option value="descendingPrice">Maior preço</option>
-                <option value="ascendingSizeInFeet">Menor espaço</option>
-                <option value="descendingSizeInFeet">Maior espaço</option>
+        <div id='configs'>
+            <select onChange={(e:React.ChangeEvent<HTMLSelectElement>)=>{updateOrder(e)}}>
+                    <option value="ascendingPrice">Menor preço</option>
+                    <option value="descendingPrice">Maior preço</option>
+                    <option value="ascendingSizeInFeet">Menor espaço</option>
+                    <option value="descendingSizeInFeet">Maior espaço</option>
             </select>
+            <select onChange={(e:React.ChangeEvent<HTMLSelectElement>)=>{updatePrice(e)}}>
+                    <option value={0}>Sem preço definido</option>
+                    <option value={20000}>Menos de 20 mil</option>
+                    <option value={50000}>Menos de 50 mil</option>
+            </select>
+            <select onChange={(e:React.ChangeEvent<HTMLSelectElement>)=>{updateSize(e)}}>
+                    <option value={0}>Sem datanho definido</option>
+                    <option value={500}>Menos de 500 pés</option>
+                    <option value={700}>Menos de 700 pés</option>
+            </select>
+        </div>
         <div id='lotsList'>
-            {lots.map((lot, i)=><Card name={lot.name} thumbnail={lot.thumbnail} price={lot.price} sizeInFeet={lot.sizeInFeet} key={i}></Card>)}
+            {properties.map((property, i)=><Card name={property.name} thumbnail={property.thumbnail} price={property.price} sizeInFeet={property.sizeInFeet} key={i}></Card>)}
         </div>
     </Content>
   )
