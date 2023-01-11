@@ -9,6 +9,7 @@ const Content = styled.div`
     background-color: #ffffff99;
     
   #lotsList{
+    width: 100%;
     height: 100%;
     padding-top: 50px;
     display: grid;
@@ -21,7 +22,7 @@ const Content = styled.div`
 
   #configs{
     background-color: aliceblue;
-    height: 80px;
+    height: 100px;
     padding: 30px;
     border-bottom: 1px solid black;
     box-shadow: 0px 1px 2px black;
@@ -29,11 +30,25 @@ const Content = styled.div`
   select{
     float: right;
     margin-left: 20px;
+    padding: 10px;
   }
 
   @media (max-width: 1000px) {
     #lotsList{
         grid-template-columns: 1fr 1fr;
+    }
+    #configs{
+        height: 160px;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    select{
+        float: left;
+        width: 90%;
+        margin: 5px 0px;
     }
   }
   @media (max-width: 800px) {
@@ -50,6 +65,7 @@ interface PropertyInterface {
   thumbnail:  string,
   price:      number,
   sizeInFeet: number,
+  id: number,
   [type: string]: number | string;
 }
 
@@ -151,7 +167,7 @@ function Home() {
             </select>
         </div>
         <div id='lotsList'>
-            {properties.map((property, i)=><Card name={property.name} thumbnail={property.thumbnail} price={property.price} sizeInFeet={property.sizeInFeet} key={i}></Card>)}
+            {properties.map((property, i)=><Card name={property.name} thumbnail={property.thumbnail} price={property.price} sizeInFeet={property.sizeInFeet} id={property.id} key={i}></Card>)}
         </div>
     </Content>
   )

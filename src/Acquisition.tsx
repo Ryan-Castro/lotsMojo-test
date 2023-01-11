@@ -12,6 +12,8 @@ const AcquisitionDiv = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: calc(100vh - 70px);
+    background-color: #00000034;
     
     
     div{
@@ -22,11 +24,30 @@ const AcquisitionDiv = styled.div`
     h1{
       margin-bottom: 50px;
     }
-    input{
-      margin-bottom: 50px;
-    }
     hr{
-      margin-bottom: 50px;
+      margin-bottom: 15px;
+    }
+    form{
+      display: flex;
+      flex-direction: column;
+    }
+    input{
+      padding: 10px;
+      height: 50px;
+      margin-bottom: 5px;
+      background-color: #c0c0c0;
+      border-radius: 5px;
+      border-color: #00000070;
+    }
+    button{
+      padding: 10px;
+      height: 50px;
+      margin-bottom: 5px;
+      background-color: cyan;
+      border-radius: 5px;
+      border-color: #25b1b1;
+      color: black;
+      font-size: 25px;
     }
 `
 
@@ -38,18 +59,15 @@ function Acquisition() {
         <Header></Header>
         <AcquisitionDiv>
           <div>
-            <h1>Aquisição da propriedade {id} </h1>
+            <h1>{id}</h1>
             <hr />
             <form method='POST'>
-              <h2>Nome Completo</h2>
-              <input type="text" placeholder='Nome próprio'/> <input type="text" placeholder='Nome completo'/>
-              <h2>CPF, CNPJ ou Passaporte</h2>
-              <input type="text"/>
-              <h2>E-mail</h2>
-              <input type="email"/>
-              <h2>Telefone</h2>
-              <input type="text"/> - <input type="text"/> <br />
-              <input type="button" value="Confirmar Interece"/>
+              <input type="text" placeholder='Nome'/>
+              <input type="text" placeholder='Sobrenome'/>
+              <input type="text" placeholder='CPF, CNPJ ou Passaporte'/>
+              <input type="email" placeholder='E-mail'/>
+              <input type="tel" placeholder="Telefone"/>
+              <button>Enviar</button>
             </form>
           </div>
         </AcquisitionDiv>

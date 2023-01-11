@@ -18,7 +18,7 @@
 <h3>Mobile</h3>
 <img src="./public/assets-readme/home-mobile.jpeg"/>
 
-<h2>infos</h2>
+<h2>Infos</h2>
 <p>Essa tela mostra as informações de cada propriedade, mostrando outras fotos que podem conter e seus detalhes, para o cliente saber como ela é</p>
 
 <h3>Desktop</h3>
@@ -26,4 +26,12 @@
 
 <h3>Mobile</h3>
 <img src="./public/assets-readme/infos-mobile.jpeg"/>
-<h2>aquisition</h2>
+
+<h2>Aquisition</h2>
+<p>Essa tela é onde a compre seria efetivada, como no teste não foi exclaricido quais campos deveria se ter, coloque alguns só como demonstrativo</p>
+
+<h3>Desktop</h3>
+<img src="./public/assets-readme/sale-desktop.jpeg"/>
+
+<h3>Mobile</h3>
+<img src="./public/assets-readme/sale-mobile.jpeg"/>

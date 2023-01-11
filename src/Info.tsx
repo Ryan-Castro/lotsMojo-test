@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom'
 const Content = styled.div`
     width: 100vw;
     height: 100vh;
+    font-weight: 200;
     #contentInfo{
         height: calc(100% - 70px);
         display: flex;
@@ -48,7 +49,7 @@ const Content = styled.div`
         width: 30%;
     }
     .divThumb>img{
-        width: 100%;
+        height: 100px;
     }
     #btn-acquisition{
         width: 100%;
@@ -99,16 +100,16 @@ function Info() {
     'https://mapio.net/images-immo-detalhe/3488668/casa-com-3-quartos-a-venda-150-m2-por-r-590000-santo-andre-sao-leopoldo-rs-img-0.jpeg'
   ]
   useEffect(()=>{ 
-    fetch("https://lotsmojotest.herokuapp.com/properties/list").then(respOnServer=>{
+    fetch(`https://lotsmojotest.herokuapp.com/properties/find/${id}`).then(respOnServer=>{
       if(respOnServer.ok){
         return respOnServer.json()
       }
-    }).then((respOnJson:{data:Array<LotInterface>})=>{
-        respOnJson.data.forEach(lot=>{
-            if(lot.name.replace(".", "") === id){
-                setLots(lot)
-            }
-        })
+    }).then((respOnJson:{data:LotInterface})=>{
+        if(respOnJson.data){
+            setLots(respOnJson.data)
+        } else {
+            alert("página não encontrada")
+        }
     })}, [])
     function updateThumb(event:React.MouseEvent<HTMLImageElement, MouseEvent>){
         let element = event.target as HTMLImageElement
