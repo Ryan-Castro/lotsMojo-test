@@ -10,6 +10,7 @@ const HeaderDiv = styled.div`
     align-items: center;
 
     img{
+        margin-left: 10px;
         height: 100%;
     }
 
@@ -23,6 +24,7 @@ const HeaderDiv = styled.div`
         text-shadow: 2px 2px 1px black;
         color: white;
     }
+    
 `
 
 const Header: FunctionComponent = (props)=>{

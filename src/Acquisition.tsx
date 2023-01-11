@@ -4,11 +4,29 @@ import { useParams} from 'react-router-dom'
 const Content = styled.div`
     width: 100vw;
     height: 100vh;
-    #acquisition{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+
+`
+
+const AcquisitionDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    
+    div{
+      background-color: white;
+      padding: 50px;
+      box-shadow: 2px 2px 2px black;
+    }
+    h1{
+      margin-bottom: 50px;
+    }
+    input{
+      margin-bottom: 50px;
+    }
+    hr{
+      margin-bottom: 50px;
     }
 `
 
@@ -18,18 +36,23 @@ function Acquisition() {
     
     <Content>
         <Header></Header>
-        <div id='acquisition'>
-          <h1>Aquisição da propriedade {id} </h1>
+        <AcquisitionDiv>
           <div>
-            <h2>Nome:</h2>
-            <input type="text" placeholder='Nome completo'/>
-            <h2>Email:</h2>
-            <input type="email" placeholder='Email'/>
-            <h2>Telefone</h2>
-            <input type="tel" placeholder='(xx) 9xxxx-xxxx' />
+            <h1>Aquisição da propriedade {id} </h1>
+            <hr />
+            <form method='POST'>
+              <h2>Nome Completo</h2>
+              <input type="text" placeholder='Nome próprio'/> <input type="text" placeholder='Nome completo'/>
+              <h2>CPF, CNPJ ou Passaporte</h2>
+              <input type="text"/>
+              <h2>E-mail</h2>
+              <input type="email"/>
+              <h2>Telefone</h2>
+              <input type="text"/> - <input type="text"/> <br />
+              <input type="button" value="Confirmar Interece"/>
+            </form>
           </div>
-          <input type="button" value="Condirmar compra" />
-        </div>
+        </AcquisitionDiv>
     </Content>
   )
 }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const CardDiv = styled.div`
-    width: 25vw;
+    width: 100%;
     border: 1px solid black;
     border-radius: 25px;
     overflow: hidden;

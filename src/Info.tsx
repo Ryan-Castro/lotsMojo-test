@@ -45,11 +45,10 @@ const Content = styled.div`
         align-content: center;
     }
     .divThumb{
-        width: 200px;
-        height: 200px;
+        width: 30%;
     }
     .divThumb>img{
-        width: 200px;
+        width: 100%;
     }
     #btn-acquisition{
         width: 100%;
@@ -58,13 +57,36 @@ const Content = styled.div`
         background-color: aqua;
         font-size: 30px;
     }
+    @media (max-width: 800px) {
+    #lotInfoCard{
+        flex-direction: column;
+        overflow: auto;
+    }
+    #lotInfoCard>img{
+        width: auto;
+        height: 70%;
+    }
+    #lotInfoCard>div{
+        width: 100%;
+    }
+    #lotInfoCard>div h1{
+        margin-bottom: 30px;
+    }
+    #lotInfoCard>div h2{
+        margin-bottom: 15px;
+
+    }
+    #thumnail{
+        margin-bottom: 15px;
+    }
+  }
 `
 interface LotInterface {
   name:       string,
   thumbnail:  string,
   price:      number,
   sizeInFeet: number,
-  address: string
+  address: string,
 }
 
 function Info() {

@@ -4,6 +4,7 @@ import Card from './components/Card'
 import Header from './components/Header'
 
 const Content = styled.div`
+    width: 100vw;
     min-height: 100vh;
     background-color: #ffffff99;
     
@@ -13,6 +14,9 @@ const Content = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
+  }
+  #lotsList>a{
+    width: 80%;
   }
 
   #configs{
@@ -26,7 +30,20 @@ const Content = styled.div`
     float: right;
     margin-left: 20px;
   }
+
+  @media (max-width: 1000px) {
+    #lotsList{
+        grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 800px) {
+    #lotsList{
+        grid-template-columns: 1fr;
+    }
+  }
 `
+
+
 
 interface PropertyInterface {
   name:       string,
