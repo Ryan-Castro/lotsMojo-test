@@ -1,4 +1,6 @@
-
+<img src="https://img.shields.io/badge/Linguagem-Typescript-blue"/>
+<img src="https://img.shields.io/badge/Teste-LotsMojo-red"/>
+<img src="https://img.shields.io/badge/Foco-Front--end-blue"/>
 
 <h1>Site para LotsMojo</h1>
 <p>Esse site foi feito para o teste para a vaga de desenvolvedor Front-End da Lots Mojo. Ele consiste em tres paginas: Home, infos, aquisition</p>
