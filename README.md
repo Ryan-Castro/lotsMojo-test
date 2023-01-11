@@ -6,5 +6,10 @@
 ##
 
 <h2>Home</h2>
+<img src="./public/assets-readme/home-desktop.jpeg"/>
+<img/>
+<img/>
 <h2>infos</h2>
+<img/>
+<img/>
 <h2>aquisition</h2>
