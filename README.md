@@ -7,9 +7,9 @@
 
 <h2>Home</h2>
 <img src="./public/assets-readme/home-desktop.jpeg"/>
-<img/>
-<img/>
+<img src="./public/assets-readme/home-tablete.jpeg"/>
+<img src="./public/assets-readme/home-mobile.jpeg"/>
 <h2>infos</h2>
-<img/>
-<img/>
+<img src="./public/assets-readme/infos-desktop.jpeg"/>
+<img src="./public/assets-readme/infos-mobile.jpeg"/>
 <h2>aquisition</h2>
