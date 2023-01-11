@@ -24,6 +24,7 @@ const Content = styled.div`
   }
   select{
     float: right;
+    margin-left: 20px;
   }
 `
 
