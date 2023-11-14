@@ -6,7 +6,7 @@ const HeaderDiv = styled.div`
     background-color: gray;
     display: flex;
     height: 70px;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
 
     img{
@@ -17,6 +17,7 @@ const HeaderDiv = styled.div`
     ul{
         list-style: none;
         display: flex;
+        float: right;
     }
     li{
         margin-right: 40px;
@@ -34,7 +35,6 @@ const Header: FunctionComponent = (props)=>{
     }
     return(
         <HeaderDiv>
-            <img src="https://spiny-creek-7d3.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F87d20700-9896-4d7c-8def-fcfb60adce9a%2FVermelha.png?table=block&id=29ad9760-1b09-4a13-b4ac-42e3bff0ca25&spaceId=887f9623-c675-4101-b8f5-fde68443a0f4&width=250&userId=&cache=v2" alt="Logo" />
             <ul>
                 <Link to="/"><li>Home</li></Link>
                 <li onClick={alertClick}>Sobre</li>
